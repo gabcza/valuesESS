@@ -12,7 +12,7 @@ m_vl_r2 <- readRDS("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/m_vl_r2.
 
 ### Charts ###
 ### m1_1
-# openness -> ZMIENIÆ WYKRES ¯EBY MIA£ OSOBNE KAFELKI NA OSOBNE ESSROUND
+# openness -> ZMIENI? WYKRES ?EBY MIA? OSOBNE KAFELKI NA OSOBNE ESSROUND
 png("m_vl_r1_1_open.png")
 plot(effect(term = "openess_s_gc:west_east:essround", 
             mod = m_vl_r1_1, 
@@ -31,7 +31,7 @@ sjt.lmer(m_vl_r1_1)
 
 # self-enh 
 png("m_vl_r1_1_enh.png")
-plot(effect(term = "west_east:essround:self_enh_s_gc", # taka kolejnoœc zmiennych konieczna
+plot(effect(term = "west_east:essround:self_enh_s_gc", # taka kolejno?c zmiennych konieczna
             mod = m_vl_r1_1, 
             x.var = "self_enh_s_gc"),
      multiline = TRUE,
@@ -116,7 +116,7 @@ m_vl_cult1_1 <- readRDS("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/m_v
 
 ### Charts 
 ### m1_1
-# openness -> ZMIENIÆ WYKRES ¯EBY MIA£ OSOBNE KAFELKI NA OSOBNE ESSROUND
+# openness -> ZMIENI? WYKRES ?EBY MIA? OSOBNE KAFELKI NA OSOBNE ESSROUND
 png("m_vl_cult1_1_open.png")
 plot(effect(term = "openess_s_gc:west_east:essround", 
             mod = m_vl_cult1_1, 
@@ -134,7 +134,7 @@ dev.off()
 
 # self-enh 
 png("m_vl_cult1_1_enh.png")
-plot(effect(term = "west_east:essround:self_enh_s_gc", # taka kolejnoœc zmiennych konieczna
+plot(effect(term = "west_east:essround:self_enh_s_gc", # taka kolejno?c zmiennych konieczna
             mod = m_vl_cult1_1, 
             x.var = "self_enh_s_gc"),
      multiline = TRUE,
@@ -175,7 +175,7 @@ m_vl_econ2_1 <- readRDS("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/m_v
 
 ### Charts
 ### m2
-# openness -> ZMIENIÆ WYKRES ¯EBY MIA£ OSOBNE KAFELKI NA OSOBNE ESSROUND
+# openness -> ZMIENI? WYKRES ?EBY MIA? OSOBNE KAFELKI NA OSOBNE ESSROUND
 png("m_vl_econ2_1_open.png")
 plot(effect(term = "openess_s_gc:welstate:essround", 
             mod = m_vl_econ2_1, 
@@ -193,7 +193,7 @@ dev.off()
 
 # self-enh 
 png("m_vl_econ2_1_enh.png")
-plot(effect(term = "welstate:essround:self_enh_s_gc", # taka kolejnoœc zmiennych konieczna
+plot(effect(term = "welstate:essround:self_enh_s_gc", # taka kolejno?c zmiennych konieczna
             mod = m_vl_econ2_1, 
             x.var = "self_enh_s_gc"),
      multiline = TRUE,
@@ -239,7 +239,7 @@ m_vl_incdif2 <- readRDS("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/m_v
 
 ### Charts ###
 ### m1_1
-# openness -> ZMIENIÆ WYKRES ¯EBY MIA£ OSOBNE KAFELKI NA OSOBNE ESSROUND
+# openness -> ZMIENI? WYKRES ?EBY MIA? OSOBNE KAFELKI NA OSOBNE ESSROUND
 png("m_vl_incdif1_1_open.png")
 plot(effect(term = "openess_s_gc:west_east:essround", 
             mod = m_vl_incdif1_1, 
@@ -257,7 +257,7 @@ dev.off()
 
 # self-enh
 png("m_vl_incdif1_1_enh.png")
-plot(effect(term = "west_east:essround:self_enh_s_gc", # taka kolejnoœc zmiennych konieczna
+plot(effect(term = "west_east:essround:self_enh_s_gc", # taka kolejno?c zmiennych konieczna
             mod = m_vl_incdif1_1, 
             x.var = "self_enh_s_gc"),
      multiline = TRUE,
@@ -337,9 +337,9 @@ readRDS("trend_vl_incdif2_s.rds") # read trend
 #################################################################################################################
 ### Writing trends to a table 
 # ![to be done]
-# zrobiæ to w odpowiednich miejscach koduy powy¿ej + zmieniæ kod ¿eby osobno liczy³ efekty dla opennes i dla self-enhancement
-setwd("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh")
+setwd("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/")
 
+#################################################################################################################
 ### Left-right self-placement ###
 # to be done separately for opennes and for self-ehnacvement
 ### Comparison between West and East
@@ -357,38 +357,94 @@ write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
 x = trend_vl_r1_1_1$comparisons
 x$contrast = paste0("'", x$contrast)
 write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+
+#################################################################################################################
 ### Cultural beliefs ###
 ### Comparison between West and East
-x= trend_cult1_1$lsmeans
+x= trend_vl_cult1_1$lsmeans
 write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
 ###
-x=trend_cult1_1$comparisons
+x=trend_vl_cult1_1$comparisons
 x$contrast = paste0("'", x$contrast)
 write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
 
 ### Comparison between ESS rounds
-x= trend_cult1_1_1$lsmeans
+x= trend_vl_cult1_1_1$lsmeans
 write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
 ###
-x=trend_cult1_1_1$comparisons
+x=trend_vl_cult1_1_1$comparisons
 x$contrast = paste0("'", x$contrast)
 write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
 
+#################################################################################################################
 ### Economic beliefs ###
-### Comparison between West and East
-x= trend_econ2_1$lsmeans
+### OPENNESS
+### Comparison between welstate
+x = trend_vl_econ2_1_o$lsmeans
 write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
 ###
-x=trend_econ2_1$comparisons
+x=trend_vl_econ2_1_o$comparisons
 x$contrast = paste0("'", x$contrast)
 write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
 
 ### Comparison between ESS rounds
-x= trend_econ2_1_1$lsmeans
+x= trend_vl_econ2_1_1_o$lsmeans
 write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
 ###
-x=trend_econ2_1_1$comparisons
+x=trend_vl_econ2_1_1_o$comparisons
 x$contrast = paste0("'", x$contrast)
 write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
 
-### Economic beliefs: 1-item ###
+### SELF-ENHANCEMENT
+### Comparison between welstate
+x = trend_vl_econ2_1_s$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_econ2_1_s$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+
+### Comparison between ESS rounds
+x= trend_vl_econ2_1_1_s$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_econ2_1_1_s$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+
+#################################################################################################################
+### Economic beliefs: 1-item (preference for redistribution) ###
+
+### OPENNESS
+### Comparison between welstate
+x = trend_vl_incdif1_1_o$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_incdif1_1_o$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+
+### Comparison between ESS rounds
+x= trend_vl_incdif1_1_1_o$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_incdif1_1_1_o$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+
+### SELF-ENHANCEMENT
+### Comparison between welstate
+x = trend_vl_incdif1_1_s$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_incdif1_1_s$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+
+### Comparison between ESS rounds
+x= trend_vl_incdif1_1_1_s$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_incdif1_1_1_s$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
