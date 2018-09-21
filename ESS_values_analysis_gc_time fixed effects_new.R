@@ -130,8 +130,8 @@ summary(data$cntry)
 data$welstate <- recode(data$cntry,
                         "SE" = 1, "NO" = 1, "DK" = 1, "FI" = 1, "IS" = 1, # nordic (IS added - it was not in the classification)
                         "IE" = 2, "GB" = 2, # liberal 
-                        "NL" = 3,"LU" = 3, "DE" = 3, # contitental:  # poprawione: teraz zgadza siê z tabel¹
-                        # komentarz wczeœniejszy: do sprawdzenia!!! Kod z spss nie zgadza siê z tabelk¹: http://essedunet.nsd.uib.no/cms/topics/multilevel/ch5/2.html
+                        "NL" = 3,"LU" = 3, "DE" = 3, # contitental:  # poprawione: teraz zgadza si? z tabel?
+                        # komentarz wcze?niejszy: do sprawdzenia!!! Kod z spss nie zgadza si? z tabelk?: http://essedunet.nsd.uib.no/cms/topics/multilevel/ch5/2.html
                         "CH" = 3, "BE" = 3,"AT" = 3, "FR"=3, # continental
                         "ES" = 4,"IL" = 4,"IT" = 4, "GR" = 4, "TR" = 4,"PT" = 4, "CY"=4, # southern
                         "RU" = 5, "EE" = 5, "BG" = 5,"CZ" = 5,"PL" = 5,"HR" = 5, "HU" = 5,"LV" = 5,"RO" = 5,"SI" = 5,"SK" = 5,"UA" = 5, "LT" = 5, "AL" = 5, "XK" = 5)# eastern (LR, AL, and XK - added, it wasn't in the classification) 
@@ -152,8 +152,8 @@ table(data$welstate2,data$cntry)
 data$welstateEast3 <- recode(data$cntry,
                              "SE" = 1, "NO" = 1, "DK" = 1, "FI" = 1, "IS" = 1, # nordic (IS added - it was not in the classification)
                              "IE" = 2, "GB" = 2, # liberal 
-                             "NL" = 3,"LU" = 3, "DE" = 3, # contitental:  # poprawione: teraz zgadza siê z tabel¹
-                             # komentarz wczeœniejszy: do sprawdzenia!!! Kod z spss nie zgadza siê z tabelk¹: http://essedunet.nsd.uib.no/cms/topics/multilevel/ch5/2.html
+                             "NL" = 3,"LU" = 3, "DE" = 3, # contitental:  # poprawione: teraz zgadza si? z tabel?
+                             # komentarz wcze?niejszy: do sprawdzenia!!! Kod z spss nie zgadza si? z tabelk?: http://essedunet.nsd.uib.no/cms/topics/multilevel/ch5/2.html
                              "CH" = 3, "BE" = 3,"AT" = 3, "FR"=3, # continental
                              "ES" = 4,"IL" = 4,"IT" = 4, "GR" = 4, "TR" = 4,"PT" = 4, "CY"=4, # southern
                              # new classification of welfare stare for Eastern countries
@@ -341,7 +341,7 @@ rm(m_vl_r2_1)
 ### Charts with slopes of fixed effects
 
 ### m1_1
-# openness -> ZMIENIÆ WYKRES ¯EBY MIA£ OSOBNE KAFELKI NA OSOBNE ESSROUND
+# openness -> ZMIENI? WYKRES ?EBY MIA? OSOBNE KAFELKI NA OSOBNE ESSROUND
 png("m_vl_r1_1_open.png")
 plot(effect(term = "openess_s_gc:west_east:essround", 
             mod = m_vl_r1_1, 
@@ -358,9 +358,9 @@ dev.off()
 
 sjt.lmer(m_vl_r1_1)
 
-# self-enh -> TO NIE DZIA£A!!! SPRAWDIÆ DLACZEGO, edit 31-08-2018: dzia³a - chodzi o kolejnoœæ zmiennych
+# self-enh -> TO NIE DZIA?A!!! SPRAWDI? DLACZEGO, edit 31-08-2018: dzia?a - chodzi o kolejno?? zmiennych
 png("m_vl_r1_1_enh.png")
-plot(effect(term = "west_east:essround:self_enh_s_gc", # taka kolejnoœc zmiennych konieczna
+plot(effect(term = "west_east:essround:self_enh_s_gc", # taka kolejno?c zmiennych konieczna
             mod = m_vl_r1_1, 
             x.var = "self_enh_s_gc"),
      multiline = TRUE,
@@ -389,7 +389,7 @@ plot(effect(term = "openess_s_gc:welstate",
      key.args = list(space = "right", columns = 1, border = FALSE, cex = 1.2))
 dev.off()
 
-# self-enh -> TO NIE DZIA£A!!! SPRAWDIÆ DLACZEGO edit 31-08-2018: dzia³a - chodzi o kolejnoœæ zmiennych
+# self-enh -> TO NIE DZIA?A!!! SPRAWDI? DLACZEGO edit 31-08-2018: dzia?a - chodzi o kolejno?? zmiennych
 png("m_vl_r2_s_enh.png")
 plot(effect(term = "welstate:self_enh_s_gc", 
             mod = m_vl_r2, 
@@ -860,6 +860,50 @@ saveRDS(m_vl_incdif2_1, "m_vl_incdif2_1.rds") # model
 #saveRDS(summary(m_vl_incdif2_1), "m_vl_incdif2_1.rds") # model summary
 readRDS("m_vl_incdif2_1.rds")
 
+### Update for the model 2_1 -> to achieve convergence
+m_vl_incdif2_1 <- readRDS("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/m_vl_incdif2_1.rds")
+m_vl_incdif2_1
+
+# check singularity 
+tt <- getME(m_vl_incdif2_1 ,"theta")
+ll <- getME(m_vl_incdif2_1 ,"lower")
+min(tt[ll==0])
+# that might be an issue, 0.0008 (quite close to 0) but not really
+
+
+# alternative method of assessing https://stats.stackexchange.com/questions/97929/lmer-model-fails-to-converge
+# if a values is small, we should be happy
+relgrad <- with(m_vl_incdif2_1@optinfo$derivs,solve(Hessian,gradient))
+max(abs(relgrad))
+
+# Ben Bolker advice: https://stackoverflow.com/questions/21344555/convergence-error-for-development-version-of-lme4
+control=lmerControl(check.conv.singular="warning")
+control
+
+# restart model
+ss <- getME(m_vl_incdif2_1 ,c("theta","fixef"))
+m_vl_incdif2_1_update <- update(m_vl_incdif2_1 ,start=ss,control = lmerControl(optCtrl=list(maxfun=2e4)))
+
+# different optimizer
+m_vl_incdif2_1_update2 <- update(m_vl_incdif2_1,start=ss,control=lmerControl(optimizer="bobyqa",
+                                                 optCtrl=list(maxfun=2e4)))
+# more optimizers
+install.packages("optimx")
+install.packages("nloptr")
+#install.packages("nlminb") # not available vor R version 3.4.3
+library("optimx")
+library("nloptr")
+
+# update 3 did converged!
+m_vl_incdif2_1_update3 <- update(m_vl_incdif2_1,start=ss,control=lmerControl(optimizer="Nelder_Mead",
+                                                                             optCtrl=list(maxfun=2e4)))
+
+m_vl_incdif2_1 <- m_vl_incdif2_1_update3
+# Save model and model summary
+saveRDS(m_vl_incdif2_1, "m_vl_incdif2_1.rds") # model
+#saveRDS(summary(m_vl_incdif2_1), "m_vl_incdif2_1.rds") # model summary
+readRDS("m_vl_incdif2_1.rds")
+
 
 ##############################################################################
 ### Compare models' fit for the economic beliefs ###
@@ -905,169 +949,4 @@ rm(m_vl_incdif1)
 rm(m_vl_incdif1_1)
 rm(m_vl_incdif2)
 rm(m_vl_incdif2_1)
-
-##############################################################################
-### Charts with slopes of fixed effects
-
-### m1_1
-# openness 
-png("m_vl_incdif1_1_open.png")
-plot(effect(term = "openess_s_gc:west_east:essround", 
-            mod = m_vl_incdif1_1, 
-            x.var = "openess_s_gc"),
-     multiline = TRUE,
-     main = " Openness x West vs. East ",
-     xlab = "Openness",
-     ylab = "Economic Beliefs [1-item]",
-     ylim = c(0, 0.8),
-     lines = list(col = c("black", "black")),
-     lty = c("solid", "dashed"),
-     key.args = list(space = "right", columns = 1, border = FALSE, cex = 1.2))
-dev.off()
-
-# self-enh -> TO NIE DZIA£A!!! SPRAWDIÆ DLACZEGO
-png("m_vl_incdif1_1_s_enh.png")
-plot(effect(term = "self_enh_s_gc:west_east:essround", 
-            mod = m_vl_incdif1_1, 
-            x.var = "self_enh_s_gc"),
-     multiline = TRUE,
-     main = "Self-enhancement x West vs. East ",
-     xlab = "Self-enhancement",
-     ylab = "Economic Beliefs [1-item]",
-     ylim = c(0, 0.8),
-     lines = list(col = c("black", "black")),
-     lty = c("solid", "dashed"),
-     key.args = list(space = "right", columns = 1, border = FALSE, cex = 1.2))
-dev.off()
-
-### m2
-# openness
-png("m_vl_incdif2_open.png")
-plot(effect(term = "openess_s_gc:welstate", 
-            mod = m_vl_incdif2, 
-            x.var = "openess_s_gc"),
-     multiline = TRUE,
-     main = " Openness x Welfare state ",
-     xlab = "Openness",
-     ylab = "Economic Beliefs [1-item]",
-     ylim = c(0, 0.8),
-     #lines = list(col = c("black", "black")),
-     #lty = c("solid", "dashed"),
-     key.args = list(space = "right", columns = 1, border = FALSE, cex = 1.2))
-dev.off()
-
-# self-enh -> TO NIE DZIA£A!!! SPRAWDIÆ DLACZEGO
-png("m_vl_incdif2_s_enh.png")
-plot(effect(term = "self_enh_s_gc:welstate", 
-            mod = m_vl_incdif2, 
-            x.var = "self_enh_s_gc"),
-     multiline = TRUE,
-     main = "Self-enhancement x Welfare state ",
-     xlab = "Self-enhancement",
-     ylab = "Economic Beliefs [1-item]",
-     ylim = c(0, 0.8),
-     #lines = list(col = c("black", "black")),
-     #lty = c("solid", "dashed"),
-     key.args = list(space = "right", columns = 1, border = FALSE, cex = 1.2))
-dev.off()
-
-##################################################################################################################
-### Trends for final models (chosen based on best fit and robustness) ###
-## TO BE DONE ###
-### in the separate script: Ess_values_trends.R
-##################################################################################################################
-
-### Left-right identification
-# read model
-m_vl_r1_1 <- readRDS("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/m_vl_r1_1.rds")
-# by essround
-trend_vl_r1_1 = cld(lstrends (m_vl_r1_1, ~ west_east|essround, var = "self_enh_s_gc"), details=TRUE)
-saveRDS(trend_vl_r1_1, "trend_vl_r1_1.rds") # save trend
-readRDS("trend_vl_r1_1.rds") # read trend
-# by west-east
-trend_vl_r1_1_1 = cld(lstrends (m_vl_r1_1, ~ essround|west_east, var = "self_enh_s_gc"), details=TRUE)
-saveRDS(trend_vl_r1_1_1, "trend_vl_r1_1_1.rds") # save trend
-readRDS("trend_vl_r1_1_1.rds") # read trend
-
-### Cultural beliefs
-# read model
-m_vl_cult1_1 <- readRDS("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/m_vl_cult1_1.rds")
-# by essround
-trend_vl_cult1_1 = cld(lstrends (m_vl_cult1_1, ~ west_east|essround, var = "self_enh_s_gc"), details=TRUE)
-saveRDS(trend_vl_cult1_1, "trend_vl_cult1_1.rds") # save trend
-readRDS("trend_vl_cult1_1.rds") # read trend
-# by welstate
-trend_vl_cult1_1_1 = cld(lstrends (m_vl_cult1_1, ~ essround|west_east, var = "self_enh_s_gc"), details=TRUE)
-saveRDS(trend_vl_cult1_1_1, "trend_vl_cult1_1_1.rds") # save trend
-readRDS("trend_vl_cult1_1_1.rds") # read trend
-
-### Economic beliefs
-# read model
-m_vl_econ2_1 <- readRDS("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/m_vl_econ2_1.rds")
-# by essround
-trend_vl_econ2_1 = cld(lstrends (m_vl_econ2_1, ~ welstate|essround, var = "self_enh_s_gc"), details=TRUE)
-saveRDS(trend_vl_econ2_1, "trend_vl_econ2_1.rds") # save trend
-readRDS("trend_vl_econ2_1.rds") # read trend
-# by welstate
-trend_vl_econ2_1_1 = cld(lstrends (m_vl_econ2_1, ~ essround|welstate, var = "self_enh_s_gc"), details=TRUE)
-saveRDS(trend_vl_econ2_1_1, "trend_vl_econ2_1_1.rds") # save trend
-readRDS("trend_vl_econ2_1_1.rds") # read trend
-
-####################################################################################
-### Writing trends to a table
-# [to be done]
-getwd()
-setwd("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh")
-
-### Left-right self-placement ###
-### Comparison between West and East
-x = trend_vl_r1_1$lsmeans
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-###
-x = trend_vl_r1_1$comparisons
-x$contrast = paste0("'", x$contrast)
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-
-### Comparison between ESS rounds
-x = trend_vl_r1_1_1$lsmeans
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-###
-x = trend_vl_r1_1_1$comparisons
-x$contrast = paste0("'", x$contrast)
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-
-### Cultural beliefs ###
-### Comparison between West and East
-x = trend_vl_cult1_1$lsmeans
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-###
-x = trend_vl_cult1_1$comparisons
-x$contrast = paste0("'", x$contrast)
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-
-### Comparison between ESS rounds
-x = trend_vl_cult1_1_1$lsmeans
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-###
-x = trend_vl_cult1_1_1$comparisons
-x$contrast = paste0("'", x$contrast)
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-
-### Economic beliefs ###
-### Comparison between West and East
-x = trend_vl_econ2_1$lsmeans
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-###
-x = trend_vl_econ2_1$comparisons
-x$contrast = paste0("'", x$contrast)
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-
-### Comparison between ESS rounds
-x = trend_vl_econ2_1_1$lsmeans
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-###
-x = trend_vl_econ2_1_1$comparisons
-x$contrast = paste0("'", x$contrast)
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-
 
