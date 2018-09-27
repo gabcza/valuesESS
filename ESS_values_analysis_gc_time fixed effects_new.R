@@ -861,14 +861,12 @@ saveRDS(m_vl_incdif2_1, "m_vl_incdif2_1.rds") # model
 readRDS("m_vl_incdif2_1.rds")
 
 ### Update for the model 2_1 -> to achieve convergence
-m_vl_incdif2_1 <- readRDS("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/m_vl_incdif2_1.rds")
-m_vl_incdif2_1
 
 # check singularity 
 tt <- getME(m_vl_incdif2_1 ,"theta")
 ll <- getME(m_vl_incdif2_1 ,"lower")
 min(tt[ll==0])
-# that might be an issue, 0.0008 (quite close to 0) but not really
+# that should not bean issue, 0.0008 (it is but not really
 
 
 # alternative method of assessing https://stats.stackexchange.com/questions/97929/lmer-model-fails-to-converge
@@ -880,13 +878,10 @@ max(abs(relgrad))
 control=lmerControl(check.conv.singular="warning")
 control
 
-# restart model
+# restart model and increase max fun
 ss <- getME(m_vl_incdif2_1 ,c("theta","fixef"))
-m_vl_incdif2_1_update <- update(m_vl_incdif2_1 ,start=ss,control = lmerControl(optCtrl=list(maxfun=2e4)))
+m_vl_incdif2_1_update1 <- update(m_vl_incdif2_1, start=ss, control = lmerControl(optCtrl=list(maxfun=2e4)))
 
-# different optimizer
-m_vl_incdif2_1_update2 <- update(m_vl_incdif2_1,start=ss,control=lmerControl(optimizer="bobyqa",
-                                                 optCtrl=list(maxfun=2e4)))
 # more optimizers
 install.packages("optimx")
 install.packages("nloptr")
@@ -894,16 +889,14 @@ install.packages("nloptr")
 library("optimx")
 library("nloptr")
 
-# update 3 did converged!
-m_vl_incdif2_1_update3 <- update(m_vl_incdif2_1,start=ss,control=lmerControl(optimizer="Nelder_Mead",
-                                                                             optCtrl=list(maxfun=2e4)))
+# different optimizer (which converged)
+m_vl_incdif2_1_update2 <- update(m_vl_incdif2_1,start=ss,control=lmerControl(optimizer="Nelder_Mead",
+                                                 optCtrl=list(maxfun=2e4)))
 
-m_vl_incdif2_1 <- m_vl_incdif2_1_update3
 # Save model and model summary
-saveRDS(m_vl_incdif2_1, "m_vl_incdif2_1.rds") # model
-#saveRDS(summary(m_vl_incdif2_1), "m_vl_incdif2_1.rds") # model summary
-readRDS("m_vl_incdif2_1.rds")
-
+saveRDS(m_vl_incdif2_1_update2, "m_vl_incdif2_1_update2.rds") # model
+#saveRDS(summary(m_vl_incdif2_1_update2), "m_vl_incdif2_1_update2.rds") # model summary
+readRDS("m_vl_incdif2_1_update2.rds")
 
 ##############################################################################
 ### Compare models' fit for the economic beliefs ###
@@ -921,20 +914,20 @@ saveRDS(anova(m_vl_incdif1_1, m_vl_incdif2), "m_vl_incdif1_1_vs_2_anova.rds")
 readRDS("m_vl_incdif1_1_vs_2_anova.rds")
 
 # Compare m_vl_incdif2 with m_vl_incdif2_1 (ess round main effect or interaction)
-saveRDS(anova(m_vl_incdif2, m_vl_incdif2_1), "m_vl_incdif2_anova.rds")
+saveRDS(anova(m_vl_incdif2, m_vl_incdif2_1_update2), "m_vl_incdif2_anova.rds")
 
 ### Compare models with west_east vs. welstate 
 # with essround main effect
 saveRDS(anova(m_vl_incdif1, m_vl_incdif2), "m_vl_incdif1_vs_incdif2_anova.rds")
 readRDS("m_vl_incdif1_vs_incdif2_anova.rds")
 # with essround interaction effect
-saveRDS(anova(m_vl_incdif1_1, m_vl_incdif2_1), "m_vl_incdif1_1_vs_incdif2_1_anova.rds")
+saveRDS(anova(m_vl_incdif1_1, m_vl_incdif2_1_update), "m_vl_incdif1_1_vs_incdif2_1_anova.rds")
 readRDS("m_vl_incdif1_1_vs_incdif2_1_anova")
 
 ### Compare all models for economic beliefs
 
 saveRDS(anova(m_vl_incdif0,m_vl_incdif1,m_vl_incdif2,
-              m_vl_incdif0_1,m_vl_incdif1_1,m_vl_incdif2_1), 
+              m_vl_incdif0_1,m_vl_incdif1_1,m_vl_incdif2_1_update), 
         "m_vl_incdif_all.rds")
 readRDS("m_vl_incdif_all.rds")
 

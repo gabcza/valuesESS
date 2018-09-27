@@ -7,12 +7,14 @@
 # best fit with LR
 m_vl_r1_1 <- readRDS("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/m_vl_r1_1.rds")
 
+sjt.lmer(m_vl_r1_1)
+
 # m2: best fit with AIC
 m_vl_r2 <- readRDS("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/m_vl_r2.rds")
 
 ### Charts ###
 ### m1_1
-# openness -> ZMIENIÆ WYKRES ¯EBY MIA£ OSOBNE KAFELKI NA OSOBNE ESSROUND
+# openness 
 png("m_vl_r1_1_open.png")
 plot(effect(term = "openess_s_gc:west_east:essround", 
             mod = m_vl_r1_1, 
@@ -27,11 +29,10 @@ plot(effect(term = "openess_s_gc:west_east:essround",
      key.args = list(space = "right", columns = 1, border = FALSE, cex = 1.2))
 dev.off()
 
-sjt.lmer(m_vl_r1_1)
 
 # self-enh 
 png("m_vl_r1_1_enh.png")
-plot(effect(term = "west_east:essround:self_enh_s_gc", # taka kolejnoœc zmiennych konieczna
+plot(effect(term = "west_east:essround:self_enh_s_gc", 
             mod = m_vl_r1_1, 
             x.var = "self_enh_s_gc"),
      multiline = TRUE,
@@ -96,7 +97,6 @@ trend_vl_r1_1_1_s = cld(lstrends (m_vl_r1_1, ~ essround|west_east, var = "self_e
 saveRDS(trend_vl_r1_1_1_s, "trend_vl_r1_1_1_s.rds") # save trend
 readRDS("trend_vl_r1_1_1_s.rds") # read trend
 
-
 ### m2
 # openess
 trend_vl_r2_o = cld(lstrends (m_vl_r2, ~ welstate, var = "openess_s_gc"),details=TRUE)
@@ -112,11 +112,11 @@ readRDS("trend_vl_r2_s.rds") # read trend
 ### Cultural beliefs
 # m1_1: best fit with AIC and LR
 m_vl_cult1_1 <- readRDS("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/m_vl_cult1_1.rds")
-
+sjt.lmer(m_vl_cult1_1)
 
 ### Charts 
 ### m1_1
-# openness -> ZMIENIÆ WYKRES ¯EBY MIA£ OSOBNE KAFELKI NA OSOBNE ESSROUND
+# openness
 png("m_vl_cult1_1_open.png")
 plot(effect(term = "openess_s_gc:west_east:essround", 
             mod = m_vl_cult1_1, 
@@ -134,7 +134,7 @@ dev.off()
 
 # self-enh 
 png("m_vl_cult1_1_enh.png")
-plot(effect(term = "west_east:essround:self_enh_s_gc", # taka kolejnoœc zmiennych konieczna
+plot(effect(term = "west_east:essround:self_enh_s_gc", 
             mod = m_vl_cult1_1, 
             x.var = "self_enh_s_gc"),
      multiline = TRUE,
@@ -172,10 +172,11 @@ readRDS("trend_vl_cult1_1_1_s.rds") # read trend
 ### Economic beliefs
 # m2_1: best fit with AIC and LR
 m_vl_econ2_1 <- readRDS("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/m_vl_econ2_1.rds")
+sjt.lmer(m_vl_econ2_1)
 
 ### Charts
 ### m2
-# openness -> ZMIENIÆ WYKRES ¯EBY MIA£ OSOBNE KAFELKI NA OSOBNE ESSROUND
+# openness 
 png("m_vl_econ2_1_open.png")
 plot(effect(term = "openess_s_gc:welstate:essround", 
             mod = m_vl_econ2_1, 
@@ -183,7 +184,7 @@ plot(effect(term = "openess_s_gc:welstate:essround",
      multiline = TRUE,
      main = " Openness x Welfare State ",
      xlab = "Openness",
-     ylab = "Economic beliefs beliefs",
+     ylab = "Economic beliefs",
      ylim = c(0, 0.8),
      #lines = list(col = c("black", "black")),
      #lty = c("solid", "dashed"),
@@ -193,13 +194,13 @@ dev.off()
 
 # self-enh 
 png("m_vl_econ2_1_enh.png")
-plot(effect(term = "welstate:essround:self_enh_s_gc", # taka kolejnoœc zmiennych konieczna
+plot(effect(term = "welstate:essround:self_enh_s_gc", 
             mod = m_vl_econ2_1, 
             x.var = "self_enh_s_gc"),
      multiline = TRUE,
      main = "Self-enhancement x Welfare State ",
      xlab = "Self-enhancement",
-     ylab = "Economic beliefs beliefs",
+     ylab = "Economic beliefs",
      ylim = c(0, 0.8),
      #lines = list(col = c("black", "black")),
      #lty = c("solid", "dashed"),
@@ -232,14 +233,14 @@ readRDS("trend_vl_econ2_1_1_s.rds") # read trend
 
 # best fit with LR
 m_vl_incdif1_1 <- readRDS("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/m_vl_incdif1_1.rds")
+sjt.lmer(m_vl_incdif1_1)
 
 # m2: best fit with AIC
 m_vl_incdif2 <- readRDS("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/m_vl_incdif2.rds")
 
-
 ### Charts ###
 ### m1_1
-# openness -> ZMIENIÆ WYKRES ¯EBY MIA£ OSOBNE KAFELKI NA OSOBNE ESSROUND
+# openness
 png("m_vl_incdif1_1_open.png")
 plot(effect(term = "openess_s_gc:west_east:essround", 
             mod = m_vl_incdif1_1, 
@@ -254,10 +255,9 @@ plot(effect(term = "openess_s_gc:west_east:essround",
      key.args = list(space = "right", columns = 1, border = FALSE, cex = 1.2))
 dev.off()
 
-
 # self-enh
 png("m_vl_incdif1_1_enh.png")
-plot(effect(term = "west_east:essround:self_enh_s_gc", # taka kolejnoœc zmiennych konieczna
+plot(effect(term = "west_east:essround:self_enh_s_gc", 
             mod = m_vl_incdif1_1, 
             x.var = "self_enh_s_gc"),
      multiline = TRUE,
@@ -301,94 +301,269 @@ plot(effect(term = "welstate:self_enh_s_gc",
      key.args = list(space = "right", columns = 1, border = FALSE, cex = 1.2))
 dev.off()
 
+########################################################
+# m2_1: after changing optimizer, shows best fit (LRT)
+# so far the model did not converge but shows little problem
+m_vl_incdif2_1 <- readRDS("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/m_vl_incdif2_1.rds")
+ss <- getME(m_vl_incdif2_1 ,c("theta","fixef"))
+m_vl_incdif2_1_update <- readRDS("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh/m_vl_incdif2_1_update.rds")
+
+sjt.lmer(m_vl_incdif2_1_update)
+
+### Charts
+### m2
+# openness 
+png("m_vl_incdif2_1_open.png")
+plot(effect(term = "openess_s_gc:welstate:essround", 
+            mod = m_vl_incdif2_1, 
+            x.var = "openess_s_gc"),
+     multiline = TRUE,
+     main = " Openness x Welfare State ",
+     xlab = "Openness",
+     ylab = "Opposition toward redistribution",
+     ylim = c(0, 0.8),
+     #lines = list(col = c("black", "black")),
+     #lty = c("solid", "dashed"),
+     key.args = list(space = "right", columns = 1, border = FALSE, cex = 1.2))
+dev.off()
+
+
+# self-enh 
+png("m_vl_incdif2_1_enh.png")
+plot(effect(term = "welstate:essround:self_enh_s_gc", 
+            mod = m_vl_incdif2_1, 
+            x.var = "self_enh_s_gc"),
+     multiline = TRUE,
+     main = "Self-enhancement x Welfare State ",
+     xlab = "Self-enhancement",
+     ylab = "Opposition toward for redistribution",
+     ylim = c(0, 0.8),
+     #lines = list(col = c("black", "black")),
+     #lty = c("solid", "dashed"),
+     key.args = list(space = "right", columns = 1, border = FALSE, cex = 1.2))
+dev.off()
 
 ### Trends ###
-### m1_1
+### m2_1
 # Trends comparisons
 # by ESS round
-trend_vl_incdif1_1_o = cld(lstrends (m_vl_incdif1_1, ~ west_east|essround, var = "openess_s_gc"),details=TRUE)
-saveRDS(trend_vl_incdif1_1_o, "trend_vl_incdif1_1_o.rds") # save trend
-readRDS("trend_vl_incdif1_1_o.rds") # read trend
-# by west-east
-trend_vl_incdif1_1_1_o = cld(lstrends (m_vl_incdif1_1, ~ essround|west_east, var = "openess_s_gc"), details = TRUE)
-saveRDS(trend_vl_incdif1_1_1_o, "trend_vl_incdif1_1_1_o.rds") # save trend
-readRDS("trend_vl_incdif1_1_1_o.rds") # read trend
+trend_vl_incdif2_1_o = cld(lstrends (m_vl_incdif2_1_update2, ~ welstate|essround, var = "openess_s_gc"),details=TRUE)
+saveRDS(trend_vl_incdif2_1_o, "trend_vl_incdif2_1_o.rds") # save trend
+readRDS("trend_vl_incdif2_1_o.rds") # read trend
+# by welstate
+trend_vl_incdif2_1_1_o = cld(lstrends (m_vl_incdif2_1_update2, ~ essround|welstate, var = "openess_s_gc"), details = TRUE)
+saveRDS(trend_vl_incdif2_1_1_o, "trend_vl_incdif2_1_1_o.rds") # save trend
+readRDS("trend_vl_incdif2_1_1_o.rds") # read trend
 
 # self-enhancement
-trend_vl_incdif1_1_s = cld(lstrends (m_vl_incdif1_1, ~ west_east|essround, var = "self_enh_s_gc"),details=TRUE)
-saveRDS(trend_vl_incdif1_1_s, "trend_vl_incdif1_1_s.rds") # save trend
-readRDS("trend_vl_incdif1_1_s.rds") # read trend
-# by west-east
-trend_vl_incdif1_1_1_s = cld(lstrends (m_vl_incdif1_1, ~ essround|west_east, var = "self_enh_s_gc"), details = TRUE)
-saveRDS(trend_vl_incdif1_1_1_s, "trend_vl_incdif1_1_1_s.rds") # save trend
-readRDS("trend_vl_incdif1_1_1_s.rds") # read trend
+trend_vl_incdif2_1_s = cld(lstrends (m_vl_incdif2_1_update2, ~ welstate|essround, var = "self_enh_s_gc"),details=TRUE)
+saveRDS(trend_vl_incdif2_1_s, "trend_vl_incdif2_1_s.rds") # save trend
+readRDS("trend_vl_incdif2_1_s.rds") # read trend
+# by welstate
+trend_vl_incdif2_1_1_s = cld(lstrends (m_vl_incdif2_1_update2, ~ essround|welstate, var = "self_enh_s_gc"), details = TRUE)
+saveRDS(trend_vl_incdif2_1_1_s, "trend_vl_incdif2_1_1_s.rds") # save trend
+readRDS("trend_vl_incdif2_1_1_s.rds") # read trend
+
+################################################################################################################################
+################################################################################################################################
+### Writing trends to a table 
+setwd("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh")
+
+################################################################################################################################
+### Left-right self-placement ###
+
+### m1_1
+### OPENNESS
+### Comparison between welstate
+x = trend_vl_r1_1_o$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_r1_1_o$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+### Comparison between ESS rounds
+x= trend_vl_r1_1_1_o$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_r1_1_1_o$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+
+### SELF-ENHANCEMENT
+### Comparison between welstate
+x = trend_vl_r1_1_s$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_r1_1_s$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+### Comparison between ESS rounds
+x= trend_vl_r1_1_1_s$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_r1_1_1_s$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
 
 ### m2
-# openess
+# OPENNESS
+trend_vl_r2_o = cld(lstrends (m_vl_r2, ~ welstate, var = "openess_s_gc"),details=TRUE)
+saveRDS(trend_vl_r2_o, "trend_vl_r2_o.rds") # save trend
+readRDS("trend_vl_r2_o.rds") # read trend
+
+# SELF-ENHANCEMENT
+trend_vl_r2_s = cld(lstrends (m_vl_r2, ~ welstate, var = "self_enh_s_gc"),details=TRUE)
+saveRDS(trend_vl_r2_s, "trend_vl_r2_s.rds") # save trend
+readRDS("trend_vl_r2_s.rds") # read trend
+
+
+################################################################################################################################
+### Cultural beliefs ###
+
+### m1_1
+### OPENNESS
+### Comparison between welstate
+x = trend_vl_cult1_1_o$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_cult1_1_o$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+### Comparison between ESS rounds
+x= trend_vl_cult1_1_1_o$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_cult1_1_1_o$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+
+### SELF-ENHANCEMENT
+### Comparison between welstate
+x = trend_vl_cult1_1_s$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_cult1_1_s$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+### Comparison between ESS rounds
+x= trend_vl_cult1_1_1_s$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_cult1_1_1_s$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+
+
+
+################################################################################################################################
+## Economic beliefs ###
+### OPENNESS
+### Comparison between welstate
+x = trend_vl_econ2_1_o$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_econ2_1_o$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+### Comparison between ESS rounds
+x= trend_vl_econ2_1_1_o$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_econ2_1_1_o$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+
+### SELF-ENHANCEMENT
+### Comparison between welstate
+x = trend_vl_econ2_1_s$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_econ2_1_s$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+### Comparison between ESS rounds
+x= trend_vl_econ2_1_1_s$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_econ2_1_1_s$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+
+################################################################################################################################
+## Economic beliefs: 1-item (preference for redistribution) ###
+### OPENNESS
+### Comparison between welstate
+x = trend_vl_incdif1_1_o$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_incdif1_1_o$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+### Comparison between ESS rounds
+x= trend_vl_incdif1_1_1_o$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_incdif1_1_1_o$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+
+### SELF-ENHANCEMENT
+### Comparison between welstate
+x = trend_vl_incdif1_1_s$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_incdif1_1_s$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+### Comparison between ESS rounds
+x= trend_vl_incdif1_1_1_s$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_incdif1_1_1_s$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+
+### m2
+# OPENNES
 trend_vl_incdif2_o = cld(lstrends (m_vl_incdif2, ~ welstate, var = "openess_s_gc"),details=TRUE)
 saveRDS(trend_vl_incdif2_o, "trend_vl_incdif2_o.rds") # save trend
 readRDS("trend_vl_incdif2_o.rds") # read trend
 
-# self-enhancement
+# SELF-ENHANCEMENT
 trend_vl_incdif2_s = cld(lstrends (m_vl_incdif2, ~ welstate, var = "self_enh_s_gc"),details=TRUE)
 saveRDS(trend_vl_incdif2_s, "trend_vl_incdif2_s.rds") # save trend
 readRDS("trend_vl_incdif2_s.rds") # read trend
 
-#################################################################################################################
-### Writing trends to a table 
-# ![to be done]
-# zrobiæ to w odpowiednich miejscach koduy powy¿ej + zmieniæ kod ¿eby osobno liczy³ efekty dla opennes i dla self-enhancement
-setwd("C:/Users/gczar_000/Documents/_ESS/Open_and_Self-enh")
-
-### Left-right self-placement ###
-# to be done separately for opennes and for self-ehnacvement
-### Comparison between West and East
-x = trend_vl_r1_1$lsmeans
+### m2_1 [updated with different optimizer, the default one initially gave a warning]
+### OPENNESS
+### Comparison between welstate
+x = trend_vl_incdif2_1_o$lsmeans
 write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
 ###
-x = trend_vl_r1_1$comparisons
+x=trend_vl_incdif2_1_o$comparisons
 x$contrast = paste0("'", x$contrast)
 write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-
 ### Comparison between ESS rounds
-x = trend_vl_r1_1_1$lsmeans
+x= trend_vl_incdif2_1_1_o$lsmeans
 write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
 ###
-x = trend_vl_r1_1_1$comparisons
-x$contrast = paste0("'", x$contrast)
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-### Cultural beliefs ###
-### Comparison between West and East
-x= trend_cult1_1$lsmeans
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-###
-x=trend_cult1_1$comparisons
+x=trend_vl_incdif2_1_1_o$comparisons
 x$contrast = paste0("'", x$contrast)
 write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
 
+### SELF-ENHANCEMENT
+### Comparison between welstate
+x = trend_vl_incdif2_1_s$lsmeans
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
+###
+x=trend_vl_incdif2_1_s$comparisons
+x$contrast = paste0("'", x$contrast)
+write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
 ### Comparison between ESS rounds
-x= trend_cult1_1_1$lsmeans
+x= trend_vl_incdif2_1_1_s$lsmeans
 write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
 ###
-x=trend_cult1_1_1$comparisons
+x=trend_vl_incdif2_1_1_s$comparisons
 x$contrast = paste0("'", x$contrast)
 write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
 
-### Economic beliefs ###
-### Comparison between West and East
-x= trend_econ2_1$lsmeans
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-###
-x=trend_econ2_1$comparisons
-x$contrast = paste0("'", x$contrast)
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-
-### Comparison between ESS rounds
-x= trend_econ2_1_1$lsmeans
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-###
-x=trend_econ2_1_1$comparisons
-x$contrast = paste0("'", x$contrast)
-write.table(x,"x.csv",sep=";",dec=",", quote = TRUE, row.names = FALSE)
-
-### Economic beliefs: 1-item ###
